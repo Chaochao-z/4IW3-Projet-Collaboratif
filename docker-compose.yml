@@ -2,6 +2,7 @@ version: "3.6"
 
 services:
   site:
+    container_name: site_collab
     build: blog/conf
     ports:
       - 80:80
