@@ -22,4 +22,7 @@ RUN chown -R www-data:www-data /var/www
 
 COPY ./php.ini /usr/local/etc/php/php.ini
 
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 EXPOSE 80
