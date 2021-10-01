@@ -1,0 +1,35 @@
+version: "3.6"
+
+services:
+  site:
+    container_name: site_collab
+    build: blog/conf
+    ports:
+      - 80:80
+    volumes:
+      - ./blog:/var/www
+    env_file:
+      - ./blog/.env
+    depends_on: 
+      - database
+
+  database:
+    image: mysql:5.6
+    container_name: mysql_collab
+    ports :
+      - "3306:3306"
+    environment:     
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_collab
+    depends_on:
+      - database
+    ports:
+      - 8888:80
+    environment:
+        - PMA_ARBITRARY=1
