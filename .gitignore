@@ -1,0 +1,4 @@
+.DS_Store
+blog/.env
+blog/.idea
+blog/.env.prod
